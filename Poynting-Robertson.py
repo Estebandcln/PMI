@@ -146,6 +146,7 @@ for i in range(len(r)):
 
 
 
+#beta
 
 beta=[]
 
@@ -172,13 +173,6 @@ plt.xscale('log')
 plt.yscale('log')
 plt.legend()
 plt.grid()
-
-
-
-
-
-
-
 
 
 
@@ -213,6 +207,3 @@ for i in range(len(R)):
     plt.grid()
     
 """
-
-
-
