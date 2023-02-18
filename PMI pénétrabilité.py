@@ -9,66 +9,52 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-"""
 
-#v=26 km/s
+#P vs. v
 
-d=np.linspace(0,10e-4,20)                              #cm
+
+plt.figure(1)
+
+
+d=np.linspace(1e-5,1e-3,5)                             #cm
 rho=2.5                                                #g/cm3
-v=26                                                   #km/s  
-P=[]
-
-for i in d:
-    P.append(0.53*(i**1.06)*(rho**0.5)*(v**(2/3)))     #cm
-
-plt.plot(d*1e4,P)
-plt.title('Pénétrabilité des particules')
-plt.xlabel('Taille des particules ($µm$)')
-plt.ylabel('Pénétrabilité ($cm$)')
-"""
-
-
-"""
-
-#pour plusieurs vitesses mais est faux
-
-d=np.linspace(0,10e-4,8)                               #cm
-rho=2.5                                                #g/cm3
-v=np.linspace(1,26,8)                                  #km/s  
+v=np.linspace(5,26,100)                                #km/s  
 
 
 for i in range(len(d)):
     P=[]
     for j in v:
-        P.append(0.53*(d[i]**1.06)*(rho**0.5)*(j**(2/3)))     #cm
+        P.append(530*(d[i]**1.06)*(rho**0.5)*(j**(2/3)))     #mm
 
-    plt.plot(d*1e4,P,label='v='+str(round(v[i],2))+' $km/s$')
+    plt.plot(v,P,label='d='+str(round(d[i]*1e4,2))+' $µm$')
     plt.title('Pénétrabilité des particules')
-    plt.xlabel('Taille des particules ($µm$)')
-    plt.ylabel('Pénétrabilité ($cm$)')
+    plt.xlabel('Vitesse des particules ($km/s$)')
+    plt.ylabel('Pénétrabilité ($mm$)')
     plt.legend()
     plt.grid()
     
     
 
-"""
+#P vs. d
 
-#pour plusieurs vitesses
 
-d=np.linspace(0,10e-4,20)                              #cm
+plt.figure(2)
+
+
+d=np.linspace(1e-5,1e-3,50)                            #cm
 rho=2.5                                                #g/cm3
-v=np.linspace(1,26,8)                                  #km/s  
+v=np.linspace(5,26,6)                                  #km/s  
 
 
 for i in v:
     P=[]
     for j in d:
-        P.append(0.53*(j**1.06)*(rho**0.5)*(i**(2/3)))     #cm
+        P.append(530*(j**1.06)*(rho**0.5)*(i**(2/3)))     #mm
 
     plt.plot(d*1e4,P,label='v='+str(round(i,2))+' $km/s$')
     plt.title('Pénétrabilité des particules')
     plt.xlabel('Taille des particules ($µm$)')
-    plt.ylabel('Pénétrabilité ($cm$)')
+    plt.ylabel('Pénétrabilité ($mm$)')
     plt.legend()
     plt.grid()
 
