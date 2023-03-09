@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-# Set physical parameters
+
 G = 6.674e-11  # Gravitational constant
 
 # Masses
@@ -38,12 +38,10 @@ r_dust = 1e-6  # Radius of dust particle
 q = 4.8e-10  # Charge of dust particle
 m = 1e-6  # Mass of dust particle
 
-# Set initial conditions
-r_0 = 2e11  # Initial distance from Sun (m)
-v_0 = 3e4  # Initial velocity (m/s)
+# Initial conditions
+r_0 = 2e11  # m
+v_0 = 3e4  # m/s
 theta_0 = np.pi/2  # Initial angle wrt Sun-particle line (radians)
-
-"""115000"""
 
 # Set time step and number of steps
 dt = 11200  # Time step
@@ -60,6 +58,41 @@ r[0] = r_0
 theta[0] = theta_0
 v_r[0] = v_0 * np.cos(theta_0)
 v_theta[0] = v_0 * np.sin(theta_0)
+                          
+
+# Polar coordinates to Cartesian coordinates
+x = r * np.cos(theta)
+y = r * np.sin(theta)
+
+# Set up figure and axes
+fig, ax = plt.subplots()
+line, = ax.plot([], [], 'bo-', markersize=0.01)
+
+sun = ax.scatter([0], [0], c='#FFFF00', marker='o', s=300)
+planets = []
+planets.append(ax.scatter([], [], c='grey', marker='o', s=20))           # Mercury
+planets.append(ax.scatter([], [], c='antiquewhite', marker='o', s=40))   # Venus
+planets.append(ax.scatter([], [], c='dodgerblue', marker='o', s=40))     # Earth
+planets.append(ax.scatter([], [], c='r', marker='o', s=30))              # Mars
+planets.append(ax.scatter([], [], c='orange', marker='o', s=120))        # Jupiter
+planets.append(ax.scatter([], [], c='wheat', marker='o', s=100))         # Saturn
+planets.append(ax.scatter([], [], c='c', marker='o', s=70))              # Uranus
+planets.append(ax.scatter([], [], c='mediumblue', marker='o', s=70))     # Neptune
+
+# Set axis limits
+ax.set_xlim(-7.78e11, 7.78e11)
+ax.set_ylim(-7.78e11, 7.78e11)
+
+
+ax.set_xlim(-2.2e11, 2.2e11)
+ax.set_ylim(-2.2e11, 2.2e11)
+
+'''
+# Extend the plot to Neptune
+ax.set_xlim(-4.498e12, 4.498e12)
+ax.set_ylim(-4.498e12, 4.498e12)
+'''
+
 
 # Function to update the plot at each time step
 def update(n, x, y, line, planets):
@@ -107,7 +140,7 @@ def update(n, x, y, line, planets):
     r[n+1] = r[n] + v_r[n+1] * dt
     theta[n+1] = theta[n] + v_theta[n+1] * dt
 
-    # Convert polar coordinates to Cartesian coordinates
+    # Polar coordinates to Cartesian coordinates
     x[n+1] = r[n+1] * np.cos(theta[n+1])
     y[n+1] = r[n+1] * np.sin(theta[n+1])
 
@@ -125,41 +158,10 @@ def update(n, x, y, line, planets):
     line.set_data(x[:n+2], y[:n+2])
     
     return line, planets[0], planets[1], planets[2], planets[3], planets[4], planets[5], planets[6], planets[7]
-                            
-
-# Convert polar coordinates to Cartesian coordinates
-x = r * np.cos(theta)
-y = r * np.sin(theta)
-
-# Set up figure and axes
-fig, ax = plt.subplots()
-line, = ax.plot([], [], 'bo-', markersize=0.01)
-sun = ax.scatter([0], [0], c='#FFFF00', marker='o', s=300)  # Add Sun to the plot
-
-# Add other planets to the plot
-planets = []
-planets.append(ax.scatter([], [], c='grey', marker='o', s=20))           # Mercury
-planets.append(ax.scatter([], [], c='antiquewhite', marker='o', s=40))   # Venus
-planets.append(ax.scatter([], [], c='dodgerblue', marker='o', s=40))     # Earth
-planets.append(ax.scatter([], [], c='r', marker='o', s=30))              # Mars
-planets.append(ax.scatter([], [], c='orange', marker='o', s=120))        # Jupiter
-planets.append(ax.scatter([], [], c='wheat', marker='o', s=100))         # Saturn
-planets.append(ax.scatter([], [], c='c', marker='o', s=70))              # Uranus
-planets.append(ax.scatter([], [], c='mediumblue', marker='o', s=70))     # Neptune
-
-# Set axis limits
-ax.set_xlim(-7.78e11, 7.78e11)
-ax.set_ylim(-7.78e11, 7.78e11)
-
-
-ax.set_xlim(-2.2e11, 2.2e11)
-ax.set_ylim(-2.2e11, 2.2e11)
-'''
-#to Neptune
-ax.set_xlim(-4.498e12, 4.498e12)
-ax.set_ylim(-4.498e12, 4.498e12)
-'''
+  
 
 # Set up animation
 ani = animation.FuncAnimation(fig, update, frames=n_steps, fargs=(x, y, line, planets), interval=50, blit=True)
 plt.show()
+
+
