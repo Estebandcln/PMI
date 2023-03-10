@@ -13,13 +13,13 @@ import matplotlib.pyplot as plt
 
 plt.figure(1)
  
-R=np.linspace(10e9,5e12,100)   #m
-r=np.linspace(1e-6,1e-3,5)     #m
-rho=2.5e3                      #kg/m^3
-Ls=3.828e26                    #W
-c=299792458                    #m/s
-G=6.6743e-11                   #N*m^2/kg^2
-Ms=1.9885e30                   #kg
+R=np.linspace(10e9,5e12,100)   # Distance to the Sun (m)
+r=np.linspace(1e-6,1e-3,5)     # Particle radius (m)
+rho=2.5e3                      # Density of a particle's material (kg/m^3)
+Ls=3.828e26                    # Solar luminosity (W)
+c=299792458                    # Speed of light (m/s)
+G=6.6743e-11                   # Gravitational constant (N*m^2/kg^2)
+Ms=1.9885e30                   # Mass of the Sun (kg)
 
 for i in range(len(r)):
     
@@ -43,13 +43,8 @@ for i in range(len(r)):
     
 plt.figure(2)
 
-R=np.linspace(10e9,5e12,5)   #m
-r=np.linspace(1e-6,1e-3,100) #m
-rho=2.5e3                    #kg/m^3
-Ls=3.828e26                  #W
-c=299792458                  #m/s
-G=6.6743e-11                 #N*m^2/kg^2
-Ms=1.9885e30                 #kg
+R=np.linspace(10e9,5e12,5)   # m
+r=np.linspace(1e-6,1e-3,100) # m
 
 for i in range(len(R)):
     
@@ -73,11 +68,6 @@ plt.figure(3)
 
 R=np.linspace(10e9,5e12,100) #m
 r=np.linspace(1e-6,1e-3,5)   #m
-rho=2.5e3                    #kg/m^3
-Ls=3.828e26                  #W
-c=299792458                  #m/s
-G=6.6743e-11                 #N*m^2/kg^2
-Ms=1.9885e30                 #kg
   
 for i in range(len(r)):
     
@@ -103,11 +93,6 @@ plt.figure(4)
 
 R=np.linspace(10e9,5e12,5)   #m
 r=np.linspace(1e-6,1e-3,100) #m
-rho=2.5e3                    #kg/m^3
-Ls=3.828e26                  #W
-c=299792458                  #m/s
-G=6.6743e-11                 #N*m^2/kg^2
-Ms=1.9885e30                 #kg
 
 for i in range(len(R)):
     
@@ -151,13 +136,13 @@ plt.grid()
 plt.figure(6)
 
 beta=[]
-Ls=3.828e33                  #erg/s
-c=29979245800                #cm/s
-G=6.6743e-8                  #dyn*cm^2/g^2
-Ms=1.9885e33                 #g
-Q=1
-r=np.linspace(1e-6,1e-3,8)   #cm
-rho=2.5                      #g/cm^3
+r=np.linspace(1e-6,1e-3,8)   # Particle radius (cm)
+rho=2.5                      # Density of a particle's material (g/cm^3)
+Ls=3.828e33                  # Solar luminosity (erg/s)
+c=29979245800                # Speed of light (cm/s)
+G=6.6743e-8                  # Gravitational constant (dyn*cm^2/g^2)
+Ms=1.9885e33                 # Mass of the Sun (g)
+Q=1                          # Ideal material
 
 for i in range(len(r)):
     
